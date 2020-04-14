@@ -6,7 +6,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="lab4" />
+        <module name="ejb3-server-war" />
+        <module name="ejb3-server-api" />
+        <module name="ejb3-server-impl" />
       </profile>
     </annotationProcessing>
   </component>

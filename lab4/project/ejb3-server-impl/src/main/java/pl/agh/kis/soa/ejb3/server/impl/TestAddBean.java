@@ -11,7 +11,6 @@ public class TestAddBean implements ILocalTestAddBean {
 
     }
 
-    @Override
     public int add(int a, int b) {
         int r = a + b;
         return r;

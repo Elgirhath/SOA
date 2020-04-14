@@ -1,7 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0fdc4fb5-2c05-4b1f-bfa1-951c7cf5da7a" name="Default Changelist" comment="" />
+    <list default="true" id="0fdc4fb5-2c05-4b1f-bfa1-951c7cf5da7a" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../lab1/FirstServlet/FirstServlet.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4project/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4project/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4project/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4project/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4project/lab4project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4project/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4project/server-api/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4project/server-api/server-api.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4project/server-impl/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab4project/server-impl/server-impl.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejb3-server-api/ejb3-server-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ejb3-server-api/ejb3-server-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejb3-server-impl/ejb3-server-impl.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ejb3-server-impl/ejb3-server-impl.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejb3-server-impl/src/main/java/pl/agh/kis/soa/ejb3/server/impl/TestAddBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/ejb3-server-impl/src/main/java/pl/agh/kis/soa/ejb3/server/impl/TestAddBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ejb3-server-war/ejb3-server-war.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ejb3-server-war/ejb3-server-war.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lab4.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../../lab1/WildFlyTest_war/WildFlyTest/WildFlyTest.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +37,18 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1aDrQcHS71EWCstcOhosGz0t2hg" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -23,8 +56,10 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../lab1/FirstServlet" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -40,6 +75,8 @@
       <option name="presentableId" value="Default" />
       <updated>1586280990954</updated>
       <workItem from="1586280993852" duration="6657000" />
+      <workItem from="1586379492854" duration="844000" />
+      <workItem from="1586521482096" duration="1522000" />
     </task>
     <servers />
   </component>
@@ -55,10 +92,31 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="765" y="229" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1586285458047" />
-    <state x="739" y="268" key="FileChooserDialogImpl" timestamp="1586292723591">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="618" y="301" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1586521567645">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="618" y="301" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" timestamp="1586521567645" />
+    <state x="591" y="212" key="FileChooserDialogImpl" timestamp="1586529412480">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="591" y="212" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1586529412480" />
     <state x="739" y="268" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1586292723591" />
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom" timestamp="1586382167306">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586382167306" />
+    <state width="1493" height="210" key="GridCell.Tab.0.center" timestamp="1586382167305">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586382167305" />
+    <state width="1493" height="210" key="GridCell.Tab.0.left" timestamp="1586382167305">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586382167305" />
+    <state width="1493" height="210" key="GridCell.Tab.0.right" timestamp="1586382167305">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586382167305" />
     <state x="490" y="175" key="Maven.ArtifactSearchDialog" timestamp="1586285179053">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -71,9 +129,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="776" y="298" key="chooseDestDirectoryDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586282443945" />
-    <state x="656" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1586281040370">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="525" y="273" key="com.intellij.ide.util.TipDialog" timestamp="1586379492836">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
+    <state x="525" y="273" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1586379492836" />
     <state x="656" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1586281040370" />
     <state x="342" y="215" key="new project wizard" timestamp="1586292730291">
       <screen x="0" y="0" width="1920" height="1040" />
