@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <f:view>
+      <h:form>
+         <table>
+            <tr>
+               <td>
+                  <table>
+                     <tr>
+                        <th colspan="2">
+                           <p>Price</p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <h:inputText value="#{BookManager.minPrice}" />
+                        </td>
+                        <td>
+                           <h:inputText value="#{BookManager.maxPrice}" />
+                        </td>
+                        <td>
+                           <h:selectOneMenu value="#{BookManager.priceFilterCurrencyCode}">
+                              <f:selectItems value="#{BookManager.allCurrencyCodes}"/>
+                           </h:selectOneMenu>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+               <td>
+                  <table>
+                     <tr>
+                        <th>
+                           <p>Convert currency:</p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <h:selectOneMenu value="#{BookManager.convertCurrencyCode}">
+                              <f:selectItem itemValue="" itemLabel="Original"/>
+                              <f:selectItems value="#{BookManager.allCurrencyCodes}"/>
+                           </h:selectOneMenu>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <table>
+                     <tr>
+                        <th>
+                           <p>Type:</p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <h:selectManyCheckbox value="#{BookManager.filterTypes}">
+                              <f:selectItems value="#{BookManager.allTypes}"/>
+                           </h:selectManyCheckbox>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <table>
+                     <tr>
+                        <th>
+                           <p>Currency:</p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <h:selectManyCheckbox value="#{BookManager.filterCurrencyCodes}">
+                              <f:selectItems value="#{BookManager.allCurrencyCodes}"/>
+                           </h:selectManyCheckbox>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <h:commandButton value="Filter" action="#{BookManager.filter}"/>
+               </td>
+            </tr>
+         </table>
+      </h:form>
+
+      <br/><br/>
+
+      <h:dataTable value="#{BookManager.books}" var="b">
+         <h:column>
+            <f:facet name="header">Title</f:facet>
+            #{b.title}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Author</f:facet>
+            #{b.author}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Type</f:facet>
+            #{b.type}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Price</f:facet>
+            #{b.price}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Currency</f:facet>
+            #{b.currencyCode}
+         </h:column>
+         <h:column>
+            <h:form>
+               <h:commandButton value="Add to cart" action="#{BookManager.addToCart(b)}"/>
+            </h:form>
+         </h:column>
+      </h:dataTable>
+
+      <br/><br/>
+      <h3>Cart:</h3>
+
+      <h:dataTable value="#{BookManager.cart}" var="b">
+         <h:column>
+            <f:facet name="header">Title</f:facet>
+            #{b.title}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Author</f:facet>
+            #{b.author}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Type</f:facet>
+            #{b.type}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Price</f:facet>
+            #{b.price}
+         </h:column>
+         <h:column>
+            <f:facet name="header">Currency</f:facet>
+            #{b.currencyCode}
+         </h:column>
+      </h:dataTable>
+
+      <h:button value="Summary" outcome="summary" disabled="#{BookManager.getCart().size() == 0}"/>
+   </f:view>
+</html>
