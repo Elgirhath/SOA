@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <f:metadata>
+      <f:event listener="#{Banner.init}" type="preRenderView"/>
+   </f:metadata>
+   <h:head>
+      <title>Survey</title>
+   </h:head>
+   <h:body>
+      <h:panelGroup layout="block">
+         <h:commandLink style="display:block;">
+            <f:ajax event="click" listener="#{Banner.incrementClicks}" render="bannerClicks"/>
+            <h1>#{Banner.selectedAd}</h1>
+         </h:commandLink>
+         <h:outputText id="bannerClicks" value="Number of clicks: #{Banner.clicks}"/>
+      </h:panelGroup>
+      <h:form>
+         <p>Name: <h:inputText value="#{Manager.firstName}" required="true"
+                               requiredMessage="Name is required" validatorMessage="Name is required"/></p>
+
+         <p>Email: <h:inputText id="email" value="#{Manager.email}" required="true"
+                                requiredMessage="Email is required" validatorMessage="Invalid email address">
+            <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
+            <f:ajax event="keyup" reRender="@this" render="validationMessages"/>
+         </h:inputText></p>
+
+         <p>Age: <h:inputText value="#{Manager.age}" required="false" validator="#{Manager.validateAge}">
+            <f:ajax event="keyup" reRender="@this" render="validationMessages"/>
+         </h:inputText></p>
+
+         <p>Sex: <h:selectOneMenu value="#{Manager.sex}" required="true" requiredMessage="Sex is required">
+            <f:selectItem itemLabel="-" itemValue="#{null}" noSelectionOption="true" />
+            <f:selectItem itemValue="male" itemLabel="male"/>
+            <f:selectItem itemValue="female" itemLabel="female"/>
+            <f:ajax event="change" render="heightInput femalePanel malePanel validationMessages"/>
+         </h:selectOneMenu></p>
+
+         <p>Education: <h:selectOneMenu value="#{Manager.education}" required="true">
+            <f:selectItem itemValue="primary"/>
+            <f:selectItem itemValue="lower secondary"/>
+            <f:selectItem itemValue="upper secondary"/>
+            <f:selectItem itemValue="post secondary or tertiary"/>
+         </h:selectOneMenu></p>
+
+         <p>Height: <h:inputText id="heightInput" value="#{Manager.height}" required="false" validator="#{Manager.validateHeight}">
+            <f:ajax event="keyup" reRender="@this" render="validationMessages"/>
+         </h:inputText></p>
+
+         <h:panelGroup id="femalePanel">
+            <h:panelGroup rendered="#{Manager.female}">
+               <p>Bust size: <h:inputText value="#{Manager.bustSize}"/></p>
+
+               <p>Cup size: <h:selectOneMenu value="#{Manager.cupSize}">
+                  <f:selectItem itemValue="-" noSelectionOption="true"/>
+                  <f:selectItem itemValue="A"/>
+                  <f:selectItem itemValue="B"/>
+                  <f:selectItem itemValue="C"/>
+                  <f:selectItem itemValue="D"/>
+               </h:selectOneMenu></p>
+
+               <p>Waist size: <h:inputText value="#{Manager.waistSize}"/></p>
+
+               <p>Hip size: <h:inputText value="#{Manager.hipSize}"/></p>
+            </h:panelGroup>
+         </h:panelGroup>
+
+
+         <h:panelGroup id="malePanel">
+            <h:panelGroup rendered="#{Manager.male}">
+               <p>Waist size: <h:inputText value="#{Manager.waistSize}"/></p>
+
+               <p>Chest size: <h:inputText value="#{Manager.chestSize}"/></p>
+            </h:panelGroup>
+         </h:panelGroup>
+
+
+         <h:commandButton value="Submit" action="page2"/>
+         <h:messages id="validationMessages" styleClass="error"/>
+      </h:form>
+
+   </h:body>
+</html>

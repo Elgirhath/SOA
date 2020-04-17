@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Survey</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:panelGroup layout="block">
+                <f:event listener="#{Banner.init}" type="preRenderView"/>
+                <h:commandLink style="display:block;">
+                    <f:ajax event="click" listener="#{Banner.incrementClicks}" render="bannerClicks"/>
+                    <h1>#{Banner.selectedAd}</h1>
+                </h:commandLink>
+                <h:outputText id="bannerClicks" value="Number of clicks: #{Banner.clicks}"/>
+            </h:panelGroup>
+
+            <br/>
+            <h2>Odpowiedzi</h2>
+
+            <b><h:outputLabel value="Name:"/></b><br/>
+            <h:outputText value="#{Manager.firstName}"/><br/><br/>
+
+            <b><h:outputLabel value="Email:"/></b><br/>
+            <h:outputText value="#{Manager.email}"/><br/><br/>
+
+            <b><h:outputLabel value="Age:"/></b><br/>
+            <h:outputText value="#{Manager.age}"/><br/><br/>
+
+            <b><h:outputLabel value="Sex:"/></b><br/>
+            <h:outputText value="#{Manager.sex}"/><br/><br/>
+
+            <b><h:outputLabel value="Education:"/></b><br/>
+            <h:outputText value="#{Manager.education}"/><br/><br/>
+
+            <b><h:outputLabel value="Height:"/></b><br/>
+            <h:outputText value="#{Manager.height}"/><br/><br/>
+
+            <h:panelGroup rendered="#{Manager.female}">
+                <b><h:outputLabel value="Bust size:"/></b><br/>
+                <h:outputText value="#{Manager.bustSize > 0.1 ? Manager.bustSize : '-'}"/><br/><br/>
+
+                <b><h:outputLabel value="Cup size:"/></b><br/>
+                <h:outputText value="#{Manager.cupSize == '' ? '-' : Manager.cupSize}"/><br/><br/>
+
+                <b><h:outputLabel value="Waist size:"/></b><br/>
+                <h:outputText value="#{Manager.waistSize > 0.1 ? Manager.waistSize : '-'}"/><br/><br/>
+
+                <b><h:outputLabel value="Hip size:"/></b><br/>
+                <h:outputText value="#{Manager.hipSize > 0.1 ? Manager.hipSize : '-'}"/><br/><br/>
+            </h:panelGroup>
+
+            <h:panelGroup rendered="#{Manager.male}">
+                <b><h:outputLabel value="Chest size:"/></b><br/>
+                <h:outputText value="#{Manager.chestSize > 0.1 ? Manager.chestSize : '-'}"/><br/><br/>
+
+                <b><h:outputLabel value="Waist size:"/></b><br/>
+                <h:outputText value="#{Manager.waistSize > 0.1 ? Manager.waistSize : '-'}"/><br/><br/>
+            </h:panelGroup>
+
+            <b><h:outputLabel value="Ile jesteś w stanie przeznaczyć miesięcznie na zakup ubrania?"/></b><br/>
+            <h:outputText value="#{Manager.monthlySpent}"/><br/><br/>
+
+            <b><h:outputLabel value="Jak często dokonujesz zakupu ubrania?"/></b><br/>
+            <h:outputText value="#{Manager.shopFrequency}"/><br/><br/>
+
+            <b><h:outputLabel value="W jakich kolorach preferujesz ubrania?"/></b><br/>
+            <ui:repeat value="#{Manager.clothColors}" var="color">
+                <h:outputText value="#{color}"/><br/>
+            </ui:repeat>
+            <ui:fragment rendered="#{empty Manager.clothColors}"><h:outputText value="-"/><br/></ui:fragment><br/>
+
+            <b><h:outputLabel value="Jakiego rodzaju ubrania najchętniej kupujesz?"/></b><br/>
+            <ui:repeat value="#{Manager.clothTypes}" var="type">
+                <h:outputText value="#{type}"/><br/>
+            </ui:repeat>
+            <ui:fragment rendered="#{empty Manager.clothTypes}"><h:outputText value="-"/><br/></ui:fragment><br/>
+
+        </f:view>
+    </h:body>
+</html>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Survey</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <h:panelGroup layout="block">
+                <h:commandLink style="display:block;">
+                    <f:ajax event="click" listener="#{Banner.incrementClicks}" render="bannerClicks"/>
+                    <h1>#{Banner.selectedAd}</h1>
+                </h:commandLink>
+                <h:outputText id="bannerClicks" value="Number of clicks: #{Banner.clicks}"/>
+            </h:panelGroup>
+            <h:panelGroup id="additional_survey">
+                <h:form>
+                    <p>Ile jesteś w stanie przeznaczyć miesięcznie na zakup ubrania?</p>
+                    <h:selectOneMenu value="#{Manager.monthlySpent}">
+                        <f:selectItem itemValue="-" noSelectionOption="true" />
+                        <f:selectItem itemValue="do 100zł"/>
+                        <f:selectItem itemValue="100-500zł"/>
+                        <f:selectItem itemValue="500-1000zł"/>
+                        <f:selectItem itemValue="powyżej 1000zł"/>
+                    </h:selectOneMenu>
+
+                    <p>Jak często dokonujesz zakupu ubrania?</p>
+                    <h:selectOneMenu value="#{Manager.shopFrequency}">
+                        <f:selectItem itemValue="-" noSelectionOption="true" />
+                        <f:selectItem itemValue="Codziennie"/>
+                        <f:selectItem itemValue="Raz w tygodniu"/>
+                        <f:selectItem itemValue="Raz w miesiącu"/>
+                        <f:selectItem itemValue="Kilka razy w roku"/>
+                    </h:selectOneMenu>
+
+                    <p>W jakich kolorach preferujesz ubrania?</p>
+                    <h:selectManyCheckbox value="#{Manager.clothColors}">
+                        <f:selectItem itemValue="Kolorowo-jaskrawych"/>
+                        <f:selectItem itemValue="Stonowanych w szarościach"/>
+                        <f:selectItem itemValue="W czerni i bieli"/>
+                        <f:selectItem itemValue="W samej czerni"/>
+                    </h:selectManyCheckbox>
+
+                    <p>Jakiego rodzaju ubrania najchętniej kupujesz?</p>
+                    <h:selectManyCheckbox value="#{Manager.clothTypes}">
+                        <f:selectItems value="#{Manager.allClothTypes}"/>
+                    </h:selectManyCheckbox>
+
+                    <h:commandButton value="Summary" action="summary.xhtml"/>
+                </h:form>
+            </h:panelGroup>
+        </f:view>
+    </h:body>
+</html>
