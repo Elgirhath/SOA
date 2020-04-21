@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+   <f:view>
+      <h:form>
+         <table>
+            <tr>
+               <td>
+                  <table>
+                     <tr>
+                        <th colspan="2">
+                           <p>Price</p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <h:inputText value="#{BookManager.minPrice}" />
+                        </td>
+                        <td>
+                           <h:inputText value="#{BookManager.maxPrice}" />
+                        </td>
+                        <td>
+                           <h:selectOneMenu value="#{BookManager.priceFilterCurrencyCode}">
+                              <f:selectItems value="#{BookManager.allCurrencyCodes}"/>
+                           </h:selectOneMenu>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+               <td>
+                  <table>
+                     <tr>
+                        <th>
+                           <p>Convert currency:</p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <h:selectOneMenu value="#{BookManager.convertCurrencyCode}">
+                              <f:selectItem itemValue="" itemLabel="Original"/>
+                              <f:selectItems value="#{BookManager.allCurrencyCodes}"/>
+                           </h:selectOneMenu>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <table>
+                     <tr>
+                        <th>
+                           <p>Type:</p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <h:selectManyCheckbox value="#{BookManager.filterTypes}">
+                              <f:selectItems value="#{BookManager.allTypes}"/>
+                           </h:selectManyCheckbox>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <table>
+                     <tr>
+                        <th>
+                           <p>Currency:</p>
+                        </th>
+                     </tr>
+                     <tr>
+                        <td>
+                           <h:selectManyCheckbox value="#{BookManager.filterCurrencyCodes}">
+                              <f:selectItems value="#{BookManager.allCurrencyCodes}"/>
+                           </h:selectManyCheckbox>
+                        </td>
+                     </tr>
+                  </table>
+               </td>
+            </tr>
+            <tr>
+               <td>
+                  <h:commandButton value="Filter" action="#{BookManager.filter}"/>
+               </td>
+            </tr>
+         </table>
+      </h:form>
+
+      <br/><br/>
+
+      <h:form>
+         <h:dataTable value="#{BookManager.books}" var="b">
+            <h:column>
+               <f:facet name="header">Title</f:facet>
+               <h:inputText rendered="${BookManager.isEditable(b)}" value="#{BookManager.getEditedBook(b).title}"/>
+               <h:outputText rendered="${!BookManager.isEditable(b)}" value="#{b.title}"/>
+               <f:facet name="short">dupa</f:facet>
+            </h:column>
+            <h:column>
+               <f:facet name="header">Author</f:facet>
+               <h:inputText rendered="${BookManager.isEditable(b)}" value="#{BookManager.getEditedBook(b).author}"/>
+               <h:outputText rendered="${!BookManager.isEditable(b)}" value="#{b.author}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">Type</f:facet>
+               <h:inputText rendered="${BookManager.isEditable(b)}" value="#{BookManager.getEditedBook(b).type}"/>
+               <h:outputText rendered="${!BookManager.isEditable(b)}" value="#{b.type}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">ISBN number</f:facet>
+               <h:inputText rendered="${BookManager.isEditable(b)}" value="#{BookManager.getEditedBook(b).isbnNumber}"/>
+               <h:outputText rendered="${!BookManager.isEditable(b)}" value="#{b.isbnNumber}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">Release Date</f:facet>
+               <h:inputText rendered="${BookManager.isEditable(b)}" value="#{BookManager.getEditedBook(b).releaseDate}"
+                            a:placeholder="dd-mm-yyyy">
+                  <f:convertDateTime pattern="dd-mm-yyyy"/>
+               </h:inputText>
+               <h:outputText rendered="${!BookManager.isEditable(b)}" value="#{b.releaseDate}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">Price</f:facet>
+               <h:inputText rendered="${BookManager.isEditable(b)}" value="#{BookManager.getEditedBook(b).price}"/>
+               <h:outputText rendered="${!BookManager.isEditable(b)}" value="#{b.price}"/>
+            </h:column>
+            <h:column>
+               <f:facet name="header">Currency</f:facet>
+               <h:inputText rendered="${BookManager.isEditable(b)}" value="#{BookManager.getEditedBook(b).currencyCode}"/>
+               <h:outputText rendered="${!BookManager.isEditable(b)}" value="#{b.currencyCode}"/>
+            </h:column>
+            <h:column>
+               <h:commandButton rendered="${!BookManager.isEditable(b)}" value="Remove" action="#{BookManager.remove(b)}"/>
+            </h:column>
+            <h:column>
+               <h:commandButton rendered="${!BookManager.isEditable(b)}" value="Edit" action="#{BookManager.setEditable(b)}"/>
+               <h:commandButton rendered="${BookManager.isEditable(b)}" value="${BookManager.isAdded(b) ? 'Add' : 'Save' }"
+                                action="#{BookManager.saveEdit(b)}"/>
+            </h:column>
+         </h:dataTable>
+      </h:form>
+   </f:view>
+</html>
