@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Inventory</title>
+</h:head>
+<h:body>
+    <a href="index.xhtml">Search</a><br/>
+    <a href="books.xhtml">Books</a><br/>
+    <a href="borrowings.xhtml">Borrowings</a><br/>
+    <a href="categories.xhtml">Categories</a><br/>
+    <a href="authors.xhtml">Authors</a><br/>
+    <a href="readers.xhtml">Readers</a><br/>
+
+    <f:view>
+        <h:form>
+            <h:dataTable value="#{InventoryManager.items}" var="c">
+                <h:column>
+                    <f:facet name="header">Title</f:facet>
+                    <h:selectOneMenu value="#{InventoryManager.getInventoryDto(c).bookId}" rendered="${InventoryManager.isEditable(c)}">
+                        <f:selectItems value = "#{InventoryManager.books}"
+                                       var="b"
+                                       itemValue="#{b.id}"
+                                       itemLabel="#{b.title}"
+                        />
+                    </h:selectOneMenu>
+                    <h:outputText rendered="${!InventoryManager.isEditable(c)}" value="#{c.book.title}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton rendered="${!InventoryManager.isEditable(c)}" value="Remove" action="#{InventoryManager.delete(c)}"/>
+                </h:column>
+                <h:column>
+                    <h:commandButton rendered="${!InventoryManager.isEditable(c)}" value="Edit" action="#{InventoryManager.setEdited(c)}"/>
+                    <h:commandButton rendered="${InventoryManager.isEditable(c)}" value="${InventoryManager.isAdded(c) ? 'Add' : 'Save' }"
+                                     action="#{InventoryManager.save(c)}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </f:view>
+</h:body>
+</html>

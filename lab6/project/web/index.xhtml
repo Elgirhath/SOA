@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
+   <h:head>
+      <title>Search</title>
+   </h:head>
+   <h:body>
+      <a href="index.xhtml">Search</a><br/>
+      <a href="books.xhtml">Books</a><br/>
+      <a href="borrowings.xhtml">Borrowings</a><br/>
+      <a href="categories.xhtml">Categories</a><br/>
+      <a href="authors.xhtml">Authors</a><br/>
+      <a href="readers.xhtml">Readers</a><br/><br/>
+
+      <br/><hr/><br/>
+
+      <h3>Select readers by their borrowing author</h3>
+      <h:form>
+         <h:outputLabel>
+            Select author:
+         </h:outputLabel>
+         <h:selectOneMenu value="#{SearchReadersByAuthorManager.searchDto.authorId}" required="true">
+            <f:selectItem itemLabel="-" itemValue="#{0}"/>
+            <f:selectItems value="#{SearchReadersByAuthorManager.authors}" var="a" itemValue="#{a.id}"
+                           itemLabel="#{a.firstName.concat(' ').concat(a.lastName)}"/>
+            <f:ajax event="change" render="@form" listener="#{SearchReadersByAuthorManager.applyDto}"/>
+         </h:selectOneMenu><br/>
+
+         <h:outputLabel>
+            Enter begin date:
+         </h:outputLabel>
+         <h:inputText a:type="date" value="#{SearchReadersByAuthorManager.minDate}">
+            <f:convertDateTime pattern="yyyy-MM-dd"/>
+            <f:ajax event="change" render="@form"/>
+         </h:inputText><br/>
+
+         <h:outputLabel>
+            Enter end date:
+         </h:outputLabel>
+         <h:inputText a:type="date" value="#{SearchReadersByAuthorManager.maxDate}">
+            <f:convertDateTime pattern="yyyy-MM-dd"/>
+            <f:ajax event="change" render="@form"/>
+         </h:inputText><br/>
+
+
+         <h:panelGroup>
+            <h:dataTable value="#{SearchReadersByAuthorManager.result}" var="reader">
+               <h:column>
+                  <f:facet name = "header">Id</f:facet>
+                  #{reader.id}
+               </h:column>
+
+               <h:column>
+                  <f:facet name = "header">Name</f:facet>
+                  #{reader.firstName} #{reader.lastName}
+               </h:column>
+            </h:dataTable>
+         </h:panelGroup>
+      </h:form>
+
+      <br/><hr/><br/>
+
+      <h3>Select readers by their borrowed books</h3>
+      <h:form>
+         <h:outputLabel>
+            Select author:
+         </h:outputLabel>
+         <h:selectOneMenu value="#{SearchReadersByBookManager.bookId}" required="true">
+            <f:selectItem itemLabel="-" itemValue="#{0}"/>
+            <f:selectItems value="#{SearchReadersByBookManager.books}" var="b" itemValue="#{b.id}" itemLabel="#{b.title}"/>
+            <f:ajax event="change" render="@form"/>
+         </h:selectOneMenu><br/>
+
+         <h:outputLabel>
+            Enter begin date:
+         </h:outputLabel>
+         <h:inputText a:type="date" value="#{SearchReadersByBookManager.minDate}">
+            <f:convertDateTime pattern="yyyy-MM-dd"/>
+            <f:ajax event="change" render="@form"/>
+         </h:inputText><br/>
+
+         <h:outputLabel>
+            Enter end date:
+         </h:outputLabel>
+         <h:inputText a:type="date" value="#{SearchReadersByBookManager.maxDate}">
+            <f:convertDateTime pattern="yyyy-MM-dd"/>
+            <f:ajax event="change" render="@form"/>
+         </h:inputText><br/>
+
+
+         <h:panelGroup>
+            <h:dataTable value="#{SearchReadersByBookManager.result}" var="reader">
+               <h:column>
+                  <f:facet name = "header">Id</f:facet>
+                  #{reader.id}
+               </h:column>
+
+               <h:column>
+                  <f:facet name = "header">Name</f:facet>
+                  #{reader.firstName} #{reader.lastName}
+               </h:column>
+            </h:dataTable>
+         </h:panelGroup>
+      </h:form>
+
+      <br/><hr/><br/>
+
+      <h3>Select authors by their readers</h3>
+      <h:form>
+         <h:outputLabel>
+            Select author:
+         </h:outputLabel>
+         <h:selectOneMenu value="#{SearchAuthorsByReaderManager.readerId}" required="true">
+            <f:selectItem itemLabel="-" itemValue="#{0}"/>
+            <f:selectItems value="#{SearchAuthorsByReaderManager.readers}" var="r" itemValue="#{r.id}"
+                           itemLabel="#{r.firstName.concat(' ').concat(r.lastName)}"/>
+            <f:ajax event="change" render="@form"/>
+         </h:selectOneMenu><br/>
+
+         <h:outputLabel>
+            Enter begin date:
+         </h:outputLabel>
+         <h:inputText a:type="date" value="#{SearchAuthorsByReaderManager.minDate}">
+            <f:convertDateTime pattern="yyyy-MM-dd"/>
+            <f:ajax event="change" render="@form"/>
+         </h:inputText><br/>
+
+         <h:outputLabel>
+            Enter end date:
+         </h:outputLabel>
+         <h:inputText a:type="date" value="#{SearchAuthorsByReaderManager.maxDate}">
+            <f:convertDateTime pattern="yyyy-MM-dd"/>
+            <f:ajax event="change" render="@form"/>
+         </h:inputText><br/>
+
+
+         <h:panelGroup>
+            <h:dataTable value="#{SearchAuthorsByReaderManager.result}" var="author">
+               <h:column>
+                  <f:facet name = "header">Id</f:facet>
+                  #{author.id}
+               </h:column>
+
+               <h:column>
+                  <f:facet name = "header">Name</f:facet>
+                  #{author.firstName} #{author.lastName}
+               </h:column>
+            </h:dataTable>
+         </h:panelGroup>
+      </h:form>
+
+      <br/><hr/><br/>
+
+      <h3>Most read authors</h3>
+      <h:form>
+         <h:panelGroup>
+            <h:dataTable value="#{SearchMostReadAuthorsManager.result}" var="authorBorrowingDto">
+               <h:column>
+                  <f:facet name = "header">Id</f:facet>
+                  #{authorBorrowingDto.author.id}
+               </h:column>
+
+               <h:column>
+                  <f:facet name = "header">Name</f:facet>
+                  #{authorBorrowingDto.author.firstName} #{authorBorrowingDto.author.lastName}
+               </h:column>
+
+               <h:column>
+                  <f:facet name = "header">Borrowing count</f:facet>
+                  #{authorBorrowingDto.borrowingCount}
+               </h:column>
+            </h:dataTable>
+         </h:panelGroup>
+      </h:form>
+
+      <br/><hr/><br/>
+
+      <h3>Query</h3>
+      <h:form>
+         <h:inputText value="#{AdvancedSearchManager.query}">
+            <f:ajax event="change" render="@form"/>
+         </h:inputText><br/>
+
+         <ui:repeat value="#{AdvancedSearchManager.result}" var="item">
+            <h:outputText value="#{item}"/><br/>
+         </ui:repeat>
+      </h:form>
+   </h:body>
+</html>

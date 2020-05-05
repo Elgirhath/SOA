@@ -103,7 +103,6 @@
                <f:facet name="header">Title</f:facet>
                <h:inputText rendered="${BookManager.isEditable(b)}" value="#{BookManager.getEditedBook(b).title}"/>
                <h:outputText rendered="${!BookManager.isEditable(b)}" value="#{b.title}"/>
-               <f:facet name="short">dupa</f:facet>
             </h:column>
             <h:column>
                <f:facet name="header">Author</f:facet>
