@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
+
+    <persistence-unit name="soa_lab6">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        <jta-data-source>java:/SOA_lab6_DS</jta-data-source>
+        <class>entities.Reader</class>
+        <class>entities.Book</class>
+        <class>entities.Author</class>
+        <class>entities.Borrowing</class>
+        <class>entities.Inventory</class>
+        <class>entities.Category</class>
+        <class>entities.BorrowingAvailableNotification</class>
+        <class>entities.NewBookNotification</class>
+        <properties>
+            <property name="hibernate.archive.autodetection" value="class, hbm"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL82Dialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="validate"/>
+        </properties>
+    </persistence-unit>
+</persistence>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>Borrowings</title>
+</h:head>
+<h:body>
+<a href="index.xhtml">Search</a><br/>
+<a href="books.xhtml">Books</a><br/>
+<a href="borrowings.xhtml">Borrowings</a><br/>
+<a href="categories.xhtml">Categories</a><br/>
+<a href="authors.xhtml">Authors</a><br/>
+<a href="readers.xhtml">Readers</a><br/>
+<a href="inventory.xhtml">Inventory</a><br/>
+<a href="login.xhtml">Log in</a><br/><br/>
+
+<f:view>
+    <h:form>
+        <h:dataTable value="#{BorrowingManager.items}" var="c">
+            <h:column>
+                <f:facet name="header">Books</f:facet>
+                <h:selectManyListbox value="#{BorrowingManager.getBorrowingDto(c).bookIds}" rendered="${BorrowingManager.isEditable(c)}">
+                    <f:selectItems value="#{BookManager.all}"
+                                   var="b"
+                                   itemValue="#{b.id}"
+                                   itemLabel="#{b.title}"/>
+                </h:selectManyListbox>
+                <h:panelGroup rendered="${!BorrowingManager.isEditable(c)}">
+                    <ui:repeat value="#{c.book}" var="b">
+                        <h:outputText value="#{b.title}"/>
+                        <br/>
+                    </ui:repeat>
+                </h:panelGroup>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Reader</f:facet>
+                <h:selectOneMenu value="#{BorrowingManager.getBorrowingDto(c).readerId}" rendered="${BorrowingManager.isEditable(c)}">
+                    <f:selectItems value = "#{ReaderManager.all}"
+                                   var="r"
+                                   itemValue="#{r.id}"
+                                   itemLabel="#{BorrowingManager.getReaderName(r)}"
+                    />
+                </h:selectOneMenu>
+                <h:outputText rendered="${!BorrowingManager.isEditable(c)}" value="#{BorrowingManager.getReaderName(c.reader)}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Borrow date</f:facet>
+                <h:inputText rendered="${BorrowingManager.isEditable(c)}" a:type="date"
+                             value="#{BorrowingManager.getEditableVersionOf(c).borrowDate}">
+                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                </h:inputText>
+                <h:outputText rendered="${!BorrowingManager.isEditable(c)}" value="#{c.borrowDate}"/>
+            </h:column>
+            <h:column>
+                <f:facet name="header">Return date</f:facet>
+                <h:inputText rendered="${BorrowingManager.isEditable(c)}" a:type="date"
+                             value="#{BorrowingManager.getEditableVersionOf(c).returnDate}">
+                    <f:convertDateTime pattern="yyyy-MM-dd"/>
+                </h:inputText>
+                <h:outputText rendered="${!BorrowingManager.isEditable(c)}" value="#{c.returnDate}"/>
+            </h:column>
+            <h:column>
+                <h:commandButton rendered="${!BorrowingManager.isEditable(c)}" value="Remove" action="#{BorrowingManager.delete(c)}"/>
+            </h:column>
+            <h:column>
+                <h:commandButton rendered="${!BorrowingManager.isEditable(c)}" value="Edit" action="#{BorrowingManager.setEdited(c)}"/>
+                <h:commandButton rendered="${BorrowingManager.isEditable(c)}" value="${BorrowingManager.isAdded(c) ? 'Add' : 'Save' }"
+                                 action="#{BorrowingManager.save(c)}"/>
+            </h:column>
+        </h:dataTable>
+    </h:form>
+</f:view>
+</h:body>
+</html>
